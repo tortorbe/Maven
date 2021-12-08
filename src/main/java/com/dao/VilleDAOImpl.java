@@ -65,8 +65,8 @@ public ArrayList<Ville> trouverVilles(Ville ville) {
 		try {
 			String query = "SELECT * FROM ville_france WHERE Code_commune_INSEE ="+ville.getCode_commune_INSEE();
 
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(query);
+			st = con.createStatement();
+			rs = st.executeQuery(query);
 			
 			while (rs.next()) {
 				ville = new Ville();
@@ -98,8 +98,8 @@ public ArrayList<Ville> trouverVilles(Ville ville) {
 		try {
 			String query = "SELECT * FROM ville_france where code_postal=" + name;
 
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(query);
+			st = con.createStatement();
+			rs = st.executeQuery(query);
 			
 			while (rs.next()) {
 				ville = new Ville();
