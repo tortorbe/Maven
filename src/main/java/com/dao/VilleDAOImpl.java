@@ -14,8 +14,11 @@ import com.dto.Ville;
 
 @Repository
 public class VilleDAOImpl implements VilleDAO {
+	
 	private static final String SQL_INSERT="INSERT INTO ville_france VALUES(?,?,?,?,?,?,?)";
 
+	PreparedStatement preparedstatement = null;
+	PreparedStatement preparedStatement = null;
 	Statement st = null;
 	ResultSet rs = null;
 	
@@ -123,7 +126,7 @@ public ArrayList<Ville> trouverVilles(Ville ville) {
 		try {
 			
 			String query = "INSERT INTO ville_france VALUES(?,?,?,?,?,?,?)" ;
-			PreparedStatement preparedStatement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			preparedStatement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
 
 			preparedStatement.setString(1, ville.getCode_commune_INSEE());
@@ -149,7 +152,7 @@ public ArrayList<Ville> trouverVilles(Ville ville) {
 		Connection con = JDBCConfiguration.getConnection();
 		try {
 			String query = "DELETE FROM ville_france WHERE code_commune_INSEE= ?";
-			PreparedStatement preparedstatement = con.prepareStatement(query);
+			preparedstatement = con.prepareStatement(query);
 			
 			preparedstatement.setString(1, code);
 			preparedstatement.executeUpdate();
@@ -166,7 +169,7 @@ public ArrayList<Ville> trouverVilles(Ville ville) {
 		Connection con = JDBCConfiguration.getConnection();
 		try {
 			String query = "UPDATE ville_france SET code_postal= ?, nom_commune= ?, libelle_acheminement= ?, ligne_5= ?, latitude= ?, longitude= ? WHERE code_commune_INSEE= ?";
-			PreparedStatement preparedstatement = con.prepareStatement(query);
+			preparedstatement = con.prepareStatement(query);
 			
 			preparedstatement.setString(1, ville.getCode_postal());
 			preparedstatement.setString(2, ville.getNom_commune());
