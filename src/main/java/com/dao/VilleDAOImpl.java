@@ -15,6 +15,11 @@ import com.dto.Ville;
 @Repository
 public class VilleDAOImpl implements VilleDAO {
 	private static final String SQL_INSERT="INSERT INTO ville_france VALUES(?,?,?,?,?,?,?)";
+
+	Statement st = null;
+	ResultSet rs = null;
+	
+	
 	public ArrayList<Ville> findAllVilles() {
 		
 		Connection con = JDBCConfiguration.getConnection();
@@ -23,9 +28,9 @@ public class VilleDAOImpl implements VilleDAO {
 		ArrayList<Ville> villes = new ArrayList();
 		try {
 			String query = "SELECT * FROM ville_france";
-
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(query);
+			
+			st= con.createStatement();
+			rs = st.executeQuery(query);
 			
 			while (rs.next()) {
 				ville = new Ville();
