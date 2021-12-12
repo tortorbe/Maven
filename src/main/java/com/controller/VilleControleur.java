@@ -31,10 +31,10 @@ class VilleController {
 	// Methode GET
 	@RequestMapping(value = "/villes", method = RequestMethod.GET)
 	@ResponseBody
-	public ArrayList<Ville> appelGet() {
+	public List<Ville> appelGet() {
 		System.out.println("Appel GET");
 
-		ArrayList<Ville> ville = villeBLOService.getInfoVilles();
+		List<Ville> ville = villeBLOService.getInfoVilles();
 
 		return ville;
 	}
@@ -62,34 +62,6 @@ class VilleController {
 		public void CreerVille(@RequestBody Ville nouvelleVille) {
 			villeBLOService.creerVille(nouvelleVille);
 		}
-		
-	// Methode DELETE
-//		@DeleteMapping("delete")
-//		public void SupprimerVille(@RequestBody Ville nouvelleVille) {
-//			villeBLOService.supprimerVille(nouvelleVille);
-//		}
-		
-//	// Methode PUT
-//		@PutMapping("update")
-//		public void ModifierVille(@RequestBody Ville nouvelleVille) {
-//			villeBLOService.modifierVille(nouvelleVille);
-//		}
-		
-//		@RequestMapping(value="/update/{Code_commune_INSEE}",method=RequestMethod.PUT)
-//		@ResponseBody
-//		public void put(@PathVariable("Code_commune_INSEE")String codeINSEE) throws Exception
-//		{
-//			System.out.println("Appel PUT");
-//			
-//	
-//			Ville ville = new Ville();
-//			ville.setCode_commune_INSEE(codeINSEE);
-//							
-//			villeBLOService.modifierVille(ville);
-//			
-//			System.out.println("La ville a bien été modifiée");
-//			
-//		}
 		
 		@PutMapping("update/{codeCommune}")
 		public void modifier(@RequestBody Ville villeModif, @PathVariable("codeCommune") String codeCommune) {
